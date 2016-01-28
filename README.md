@@ -5,7 +5,7 @@ Vektor's web project starting place
 
 - Ruby (Built in Mac)
 - SASS (gem install sass)
-- Compass (gem install compass) (Problems installing compass?)
+- Compass (gem install compass) (Problems installing <a href="http://stackoverflow.com/questions/32891965/error-while-executing-gem-errnoeperm-operation-not-permitted">compass</a>?)
 - Node JS
   - Grunt CLI
   - Git 
