@@ -27,15 +27,15 @@ module.exports = function(grunt) {
 		}
 	},
 
-	 concat: {
+	concat: {
 		options: {
-		  separator: ';',
+			separator: ';',
 		},
 		dist: {
-		  src: ['modules/**/*.js'],
-		  dest: 'js/main.js',
+			src: ['modules/**/*.js'],
+			dest: 'js/main.js',
 		},
-	 },
+	},
 
 	cssmin: {
 		target: {
@@ -84,4 +84,4 @@ module.exports = function(grunt) {
 
 	// Launch CSSMin + BrowserSync + watch task
 	grunt.registerTask('default', ['browserSync', 'cssmin', 'watch']);
-}
+};
