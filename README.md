@@ -1,5 +1,5 @@
 # Vektor Boilerplate
-vektor's web project starting place
+Vektor's web project starting place
 
 ##Prerequisites
 
