@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 				},
 			options: {
 				watchTask: true,
-				proxy: 'http://localhost/~vektor/boilerplate/'
+				proxy: "localhost" + process.cwd().replace('/Sites', '').replace('/Users/','/~'),
 			}
 		}
 	},
