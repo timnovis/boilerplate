@@ -3,7 +3,7 @@ vektor's web project starting place
 
 ##Prerequisites
 
-- Ruby (Built in)
+- Ruby (Built in Mac)
 - SASS (gem install sass)
 - Compass (gem install compass) (Problems installing compass?)
 - Node JS
