@@ -1,0 +1,30 @@
+@mixin bp($size) {
+	$size: $size + '';
+	@if map_has_key($breakpoints_map, $size) {
+		$breakpoint_map: map-get($breakpoints_map, $size);
+		@if (map-get($breakpoint_map, 'min_width') == null) {
+			@media (max-width: #{map-get($breakpoint_map, 'max_width')}) { @content; }
+		} @else if (map-get($breakpoint_map, 'max_width') == null) {
+			@media (min-width: #{map-get($breakpoint_map, 'min_width')}) { @content; }
+		} @else {
+			@media (min-width: #{map-get($breakpoint_map, 'min_width')}) and (max-width: #{map-get($breakpoint_map, 'max_width')}) { @content; }
+		}
+	}
+}
+
+@mixin cbp($min_width: null, $max_width: null) {
+	@if ($min_width == null) {
+		@media (max-width: #{$max_width}) { @content }
+	} @else if ($max_width == null) {
+		@media (min-width: #{$min_width}) { @content }
+	} @else {
+		@media (min-width: #{$min_width}) and (max-width: #{$max_width}) { @content }
+	}
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder { @content; }
+	&:-moz-placeholder { @content; }
+	&::-moz-placeholder { @content; }
+	&:-ms-input-placeholder { @content; }
+}

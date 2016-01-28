@@ -1,0 +1,183 @@
+$table_switch--sm: '1t2e';
+$table_switch--lg: '3';
+
+$table__spacing--default--sm: 5px;
+$table__spacing--default--lg: 6px;
+
+$table__spacing--padded--sm: 5px;
+$table__spacing--padded--lg: 10px;
+
+$table__stripe--color: #F5F5F5;
+$table__border--color: darken($table__stripe--color, 10);
+
+.table {
+	margin: 0 0 15px;
+	margin-bottom: 1.2rem;
+	width: 100%;
+	border-collapse: collapse;
+	@include bp($table_switch--sm) {
+		display: block;
+	}
+	@include bp($table_switch--lg) {
+		table-layout: fixed;
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+	&.table--bordered {
+		border: 1px solid $table__border--color;
+	}
+	.table__head, thead {
+		border-bottom: 1px solid $table__border--color;
+		font-weight: bold;
+		@include bp($table_switch--sm) {
+			display: none;
+		}
+		.no-flexbox & {
+			display: table-header-group;
+		}
+	}
+	&.table--striped {
+		.table__head, thead {
+			.table__row, tr {
+				background-color: $table__stripe--color;
+			}
+		}
+	}
+	tbody, tr {
+		@include bp($table_switch--sm) {
+			display: block;
+		}
+	}
+	.no-flexbox & {
+		display: table;
+		width: 100%;
+	}
+}
+
+.table__head, .table__header, thead {
+	.table__title {
+		font-weight: bold;
+	}
+}
+
+.table__body, tbody {
+	.no-flexbox & {
+		display: table-row-group;
+	}
+}
+
+.table__row, tr {
+	border-bottom: 1px solid $table__border--color;
+	@include bp($table_switch--sm) {
+		padding-top: $table__spacing--default--sm;
+		padding-bottom: $table__spacing--default--sm;
+	}
+	@include bp($table_switch--lg) {
+		@include display-flex;
+		display: -ms-flexbox;
+		@include flex-direction(row);
+		@include flex-wrap(nowrap);
+		@include justify-content(space-between);
+	}
+	&:first-child {
+		@include bp($table_switch--sm) {
+			border-top: 1px solid $table__border--color;
+		}
+	}
+	&:last-child {
+		border-bottom: 0;
+		@include bp($table_switch--sm) {
+			border-bottom: 1px solid $table__border--color;
+		}
+	}
+	.no-flexbox & {
+		display: table-row;
+	}
+	.table--bordered & {
+		padding-top: 0;
+		padding-bottom: 0;
+		&:first-child {
+			@include bp($table_switch--sm) {
+				border-top: 0;
+			}
+		}
+		&:last-child {
+			@include bp($table_switch--sm) {
+				border-bottom: 0;
+			}
+		}
+	}
+	.table--striped &:nth-child(even) {
+		background-color: $table__stripe--color;
+	}
+	.table__cell, td, th {
+		text-align: left;
+		padding-top: $table__spacing--default--sm;
+		padding-bottom: $table__spacing--default--sm;
+		vertical-align: middle;
+		@include bp($table_switch--sm) {
+			@include display-flex;
+			display: -ms-flexbox;
+			@include flex-direction(row);
+			@include flex-wrap(wrap);
+			@include justify-content(space-between);
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+		@include bp($table_switch--lg) {
+			@include flex(1);
+			padding-top: $table__spacing--default--lg;
+			padding-bottom: $table__spacing--default--lg;
+			padding-left: $table__spacing--default--lg;
+			padding-right: $table__spacing--default--lg;
+		}
+		.table--bordered & {
+			padding-left: $table__spacing--padded--sm;
+			padding-right: $table__spacing--padded--sm;
+			@include bp($table_switch--sm) {
+				border-bottom: 1px solid lighten($table__border--color, 6);
+			}
+			@include bp($table_switch--lg) {
+				border-right: 1px solid $table__border--color;
+				padding-top: $table__spacing--padded--lg;
+				padding-bottom: $table__spacing--padded--lg;
+				padding-left: $table__spacing--padded--lg;
+				padding-right: $table__spacing--padded--lg;
+			}
+			&:last-child {
+				border-right: 0;
+				border-bottom: 0;
+			}
+		}
+		.table--striped & {
+			@include bp($table_switch--sm) {
+				padding-left: $table__spacing--padded--sm;
+				padding-right: $table__spacing--padded--sm;
+			}
+		}
+		.no-flexbox & {
+			display: table-cell;
+		}
+		.no-flexbox .table--bordered & {
+			border-right: 1px solid $table__border--color;
+			border-bottom: 0;
+			&:last-child {
+				border-right: 0;
+			}
+		}
+		& > * {
+			@include bp($table_switch--sm) {
+				@include flex(1);
+			}
+		}
+		.table__header {
+			@include bp($table_switch--lg) {
+				display: none;
+			}
+			.no-flexbox & {
+				display: none;
+			}
+		}
+	}
+}

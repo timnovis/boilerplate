@@ -1,0 +1,139 @@
+$tg_el__border--light: #EAEAEA;
+
+%tg_el__spacing {
+	margin: 0 0 15px;
+	margin-bottom: 1.2rem;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+body {
+	line-height: 1.5;
+	font-size: 14px;
+	color: $color__body;
+	@include bp(3) {
+		font-size: 16px;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@extend %tg_el__spacing;
+}
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+h4 {
+}
+
+h5 {
+}
+
+h6 {
+}
+
+ul {
+	display: block;
+	list-style: none;
+	padding: 0;
+	@extend %tg_el__spacing;
+}
+
+li {
+	display: block;
+	list-style: none;
+	margin: 0 0 10px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+a {
+	@include transition(color .3s ease);
+	text-decoration: none;
+	color: $color__link;
+	cursor: pointer;
+	&.link {
+		text-decoration: underline;
+		&:hover {
+			color: lighten($color__link, 20);
+		}
+	}
+}
+
+p {
+	@extend %tg_el__spacing;
+}
+
+blockquote {
+	border-left: 5px solid $tg_el__border--light;
+	padding: 5px 0 5px 15px;
+  	margin-left: -20px;
+	@extend %tg_el__spacing;
+}
+
+$tc__colors: (
+	'default': $color__body,
+	'white': $white,
+	'primary': $primary,
+	'secondary': $secondary
+);
+
+@mixin tc__style($color) {
+	color: $color;
+}
+
+.tc {
+	@each $color_name, $color in $tc__colors {
+		@if ($color_name == 'default') {
+    		@include tc__style($color);
+			// &--#{$color_name} {
+			// 	@include tc__style($color);
+			// }
+	  	} @else {
+			&--#{$color_name} {
+				@include tc__style($color);
+			}
+		}
+	}
+}
+
+@mixin text_manipulation($bp: null) {
+
+	$bp: if($bp, '--#{$bp}', '');
+
+	.ta--l#{$bp} {
+		text-align: left;
+	}
+
+	.ta--c#{$bp} {
+		text-align: center;
+	}
+
+	.ta--r#{$bp} {
+		text-align: right;
+	}
+
+	.tt--u#{$bp} {
+		text-transform: uppercase;
+	}
+
+	.tt--n#{$bp} {
+		text-transform: none;
+	}
+
+}
+
+@include text_manipulation();
+@each $breakpoint_size, $breakpoint_map in $breakpoints_map {
+	@include bp($breakpoint_size) {
+		@include text_manipulation($breakpoint_size);
+	}
+}

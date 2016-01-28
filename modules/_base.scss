@@ -1,0 +1,28 @@
+@import 'lib/normalize';
+
+*, *:before, *:after, *::before, *::after {
+	@include box-sizing(border-box);
+	-webkit-font-smoothing: antialiased;
+}
+
+img, video, audio, embed, object, canvas, input, iframe {
+	vertical-align: middle;
+	max-width: 100%;
+}
+
+svg {
+	max-height: 100%;
+	display: block;
+}
+
+::-moz-selection {
+	color: $color__selection;
+	background: $bg__selection;
+	text-shadow: none;
+}
+
+::selection {
+	color: $color__selection;
+	background: $bg__selection;
+	text-shadow: none;
+}

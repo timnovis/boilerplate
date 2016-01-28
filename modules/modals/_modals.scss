@@ -1,0 +1,71 @@
+.modal {
+	left: -100%;
+	top: 0;
+	right: 100%;
+	bottom: 0;
+	@include opacity(0);
+	position: fixed;
+	background-color: rgba($black, 0.4);
+	.no-rgba & {
+		background: url(../img/modal__bg.png) top left repeat;
+	}
+	@include display-flex;
+	display: -ms-flexbox;
+	@include justify-content(center);
+	@include align-items(center);
+	z-index: 3;
+	@include transition(left 0s .3s, right 0s .3s, opacity .3s ease);
+	@include perspective(100px);
+	&.is_open {
+		cursor: pointer;
+		left: 0;
+		right: 0;
+		@include opacity(1);
+		@include transition(left 0s, right 0s, opacity .3s ease);
+		.modal__dialog {
+			cursor: default;
+			@include scale(1);
+		}
+	}
+	.modal__dialog {
+		margin: 0 20px;
+		padding: 2em;
+		background-color: $white;
+		position: relative;
+		@include box-shadow(0 10px 20px rgba($black, 0.15));
+		@include scale(0);
+		@include transition(transform .25s ease);
+		width: 100%;
+	    max-height: 100vh;
+	    overflow: auto;
+	    -webkit-overflow-scrolling: touch;
+		@include bp(3) {
+			margin-left: auto;
+			margin-right: auto;
+			width: 500px;
+		}
+		.modal__dismiss {
+			position: absolute;
+			right: 0;
+			top: 0;
+			cursor: pointer;
+			padding: 1.5em;
+			z-index: 1;
+			.no-inlinesvg & {
+				width: 20px;
+				height: 20px;
+			}
+			.modal__dismiss__icon {
+				fill: darken($white, 12);
+				@include transition(fill .3s ease);
+				&:hover {
+					fill: darken($white, 20);
+				}
+			}
+			svg, .no-inlinesvg & img {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}

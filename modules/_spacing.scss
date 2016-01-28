@@ -1,0 +1,40 @@
+$spacing_types: ('p': 'padding', 'm': 'margin');
+
+@mixin spacing($bp: null) {
+	$bp: if($bp, '--#{$bp}', '');
+	@each $spacing_type__abv, $spacing_type in $spacing_types {
+		$areas: (
+			'a': ('#{$spacing_type}'),
+			't': ('#{$spacing_type}-top'),
+			'b': ('#{$spacing_type}-bottom'),
+			'v': ('#{$spacing_type}-top', '#{$spacing_type}-bottom'),
+			// 'l': ('#{$spacing_type}-left'),
+			// 'r': ('#{$spacing_type}-right'),
+			// 'h': ('#{$spacing_type}-left', '#{$spacing_type}-right')
+		);
+		@each $area__name, $area in $areas {
+			&--#{$spacing_type__abv}#{$area__name}0#{$bp} {
+				@each $area__prop in $area {
+					#{$area__prop}: 0;
+				}
+			}
+			@each $spacing__size in $spacing_map {
+				$idx: index($spacing_map, $spacing__size);
+				&--#{$spacing_type__abv}#{$area__name}#{$idx}#{$bp} {
+					@each $area__prop in $area {
+						#{$area__prop}: $spacing__size;
+					}
+				}
+			}
+		}
+	}
+}
+
+.spc {
+	@include spacing();
+	@each $breakpoint_size, $breakpoint_map in $breakpoints_map {
+		@include bp($breakpoint_size) {
+			@include spacing($breakpoint_size);
+		}
+	}
+}
