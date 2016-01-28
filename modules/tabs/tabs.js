@@ -18,4 +18,5 @@
 	};
 
 	tabs.init('.tabs');
+
 })(jQuery);

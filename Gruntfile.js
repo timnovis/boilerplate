@@ -1,13 +1,22 @@
 module.exports = function(grunt) {
+
+	//Shows task time breakdown
+	require('time-grunt')(grunt);
+
 	grunt.initConfig({
-		compass: {
-			dist: {
-				options: {
-					sassDir: 'modules',
-					cssDir: './'
-				}
+
+	concurrent: {
+		tasks1: ['compass', 'watch']
+	},
+
+	compass: {
+		dist: {
+			options: {
+				sassDir: 'modules',
+				cssDir: './'
 			}
-		},
+		}
+	},
 
 	watch: {
 		css: {
@@ -15,7 +24,7 @@ module.exports = function(grunt) {
 			tasks: ['compass', 'cssmin']
 		},
 		js: {
-			files:  "modules/**/*.js",
+			files: ['modules/**/*.js'],
 			tasks: ['concat', 'uglify', 'jscs']
 		}
 	},
@@ -67,21 +76,15 @@ module.exports = function(grunt) {
 	uglify: {
 		toUglify: {
 			files: {
-			'js/main.min.js': ['js/main.js']
+				'js/main.min.js': ['js/main.js']
 			}
 		}
 	}
 });
-	grunt.loadNpmTasks('grunt-contrib-compass');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks("grunt-jscs");
-	grunt.loadNpmTasks('grunt-browser-sync');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	//Load all grunt tasks using load-grunt-tasks (https://www.npmjs.com/package/load-grunt-tasks)
+	require('load-grunt-tasks')(grunt);
 
 	// Launch CSSMin + BrowserSync + watch task
-	grunt.registerTask('default', ['browserSync', 'cssmin', 'watch']);
+	grunt.registerTask('default', ['browserSync', 'concurrent:tasks1']);
 };
