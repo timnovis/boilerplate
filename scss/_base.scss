@@ -14,15 +14,3 @@ svg {
 	max-height: 100%;
 	display: block;
 }
-
-::-moz-selection {
-	color: $color__selection;
-	background: $bg__selection;
-	text-shadow: none;
-}
-
-::selection {
-	color: $color__selection;
-	background: $bg__selection;
-	text-shadow: none;
-}
